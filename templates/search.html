@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Search Results</h1>
+
+        <!-- Back to Home Button -->
+        <a href="/" class="btn btn-primary mb-3">Back to Home</a>
+
+        <!-- Search results list -->
+        {% if req_search %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Sno</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Profession</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in req_search %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ data.name }}</td> <!-- Assuming 'name' should be 'title' based on your Todo model -->
+                        <td>{{ data.prof }}</td> <!-- Assuming 'prof' should be 'desc' based on your Todo model -->
+                        <td>{{ data.date_created }}</td>
+                        <td><a href="/update/{{ data.sno }}" class="btn btn-outline-dark btn-sm">Update</a></td>
+                        <td><a href="/delete/{{ data.sno }}" class="btn btn-outline-dark btn-sm">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+        <div class="alert alert-warning">
+            No results found.
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

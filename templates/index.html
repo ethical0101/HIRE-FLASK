@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+{% block body %}
+<div class="container">
+    <form action="/", method="POST">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp" />
+            
+        </div>
+        <div class="mb-3">
+            <label for="prof" class="form-label">Profession</label>
+            <input type="text" class="form-control" name="prof" id="profession" />
+        </div>
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">sno</th>
+            <th scope="col">Name</th>
+            <th scope="col">Profession</th>
+            <th scope="col">Time</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in allTodo %}
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{data.name}}</td>
+            <td>{{data.prof}}</td>
+            <td>{{data.date_created}}</td>
+            <td><a href="/update/{{data.sno}}" type="button" class="btn btn-outline-dark  btn-sm max-1">Update</button>
+            </td>
+            <td><a href="/delete/{{data.sno}}" type="button" class="btn btn-outline-dark  btn-sm max-1">Delete</button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+
+{% endblock body %}
